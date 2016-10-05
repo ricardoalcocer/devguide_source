@@ -3,6 +3,8 @@ layout: page
 title: "CloudShell Developer Guide"
 ---
 Welcome to the CloudShell developer guide!
+
+
 These pages will take you through all you need to know to become an expert CloudShell developer.
 The guide is intended both for developers taking their first steps with the platform as well as for seasoned CloudShell developers.
 
