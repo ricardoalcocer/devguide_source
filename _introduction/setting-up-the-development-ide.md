@@ -14,7 +14,7 @@ In this section we'll go over the recommended steps for setting up a development
 Download and install the latest version of Python 2.7.x from the [official website](https://www.python.org/downloads/).
 We also recommend installing pip (even though technically its included in the latest versions of Python). Follow the instructions on this website: [https://pip.pypa.io/en/stable/installing/](https://pip.pypa.io/en/stable/installing/)
 
-### Pick and install an IDE
+### Pick and install an IDE <a name="ide"></a>
 
 In the scope of this guide we'll discuss developing shells and scripts using standard
 Python, which means that there are many great options for an IDE.
@@ -25,9 +25,7 @@ Some free IDEs to consider:
 * [GitHub Atom ](https://atom.io/)
 * [Sublime Text ](https://www.sublimetext.com/)
 
-These are all great IDEs. At this point we recommend using PyCharm simply because you'll be able to use
-Quali's developer plugin developed for that IDE in the community. This plugin is not a must but will make
-your life a little easier by automating some steps required to upload your driver or set it up for debugging.
+These are all great IDEs. If  you decide to use PyCharm you can leverage Quali's developer plugin developed for that IDE in the community. This plugin is not a must but will make your life a little easier by automating some steps required to upload your driver or set it up for debugging.  If you'd rather use any other IDE/Editor, then you'll use ShellFoundry to upload your shells.
 
 ### Install Git
 
@@ -44,6 +42,7 @@ To install ShellFoundry, simply open a new command line  window and type in the 
 
 {% highlight bash %} python -m pip install shellfoundry {% endhighlight %}
 
+
 ### Install and setup the CloudShell SDK
 
 ![CloudShell]({{ site.url }}/devguide/assets/cloudshell-logo.png){:class="img-responsive"}
@@ -55,9 +54,9 @@ Follow the instructions on the [download page](http://info.quali.com/cloudshell-
 
 ### (Optional) Install the CloudShell PyCharm plugin (PyCharm)
 
-If you've selected to use PyCharm as your IDE, you can take advantage of the community contributed CloudShell plugin.
+If you've selected to use PyCharm as your IDE, you can leverage the community contributed CloudShell plugin.
 Follow the installation instructions on the [project repo](https://github.com/QualiSystemsLab/CloudShell-PyCharm-Plugin).
-From the _Step-by-step installation guide_ section perform steps 1-6 only. Don't continue to configure the plugin usage further yet, we'll get to that part later in this guide.
+From the _Step-by-step installation guide_ section perform steps 1-6 only. Don't continue to configure the plugin usage further yet, we'll get to that part [later in this guide]({{ site.url }}/devguide//shells/debugging-shell-commands.html).
 
 ### Where to next?
 
