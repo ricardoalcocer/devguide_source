@@ -5,26 +5,23 @@ date: "2016-04-30 13:02:32 +0300"
 order: 1
 comments: true
 ---
-This section will take you through the basic steps of a creating a new Shell. The goal is to demonstrate the end-to-end cycle, from generating a new Shell project to instancing Shell resources and running commands in CloudShell. 
+This section will take you through the basic steps of a creating a new Shell. The goal is to demonstrate the end-to-end cycle, from generating a new Shell project to instancing Shell resources and running commands in CloudShell.  
 
-### Prerequisites
-* [Get CloudShell](http://info.quali.com/cloudshell-developer-edition-download): Download the latest CloudShell SDK and run it on your machine.  
-* **Python**: You must have [Python](https://www.python.org/downloads/) 2.7.x (latest recommended) installed on your machine.
-* **IDE/Text Editor:** Any IDE or editor you'd rather use as an IDE. We recommend using PyCharm (which offers a free community edition) because of the tooling we've already created for that IDE, including a CloudShell developer plugin.
-* **ShellFoundry** Install ShellFoundry using pip. Run the following in your local shell: {% highlight bash %} python -m pip install shellfoundry {% endhighlight %}
+> This section assumes you have installed all prequisites.  If you're unsure, please refer to the [Setting up the development environment]({{ site.url }}/devguide/introduction/setting-up-the-development-ide.html) section.  
 
 ### Creating the Shell Project
-To create the shell project, we'll take advantage of ShellFoundry, a CLI tool for generating and distributing shells. If you installed the prerequisites listed above this tool should already be installed and ready on your system.
 
-To create a new project, simply run the following command in your local shell, which will create a new sub directory containing the basic shell project structure and files:
+To create the shell project, we'll leverage [ShellFoundry](https://github.com/QualiSystems/shellfoundry), a CLI tool for generating and distributing shells. If you installed the prerequisites listed above this tool should already be installed and ready on your system.
+
+To create a new project, simply run the following command in your local computer, which will create a new sub directory containing the basic shell project structure and files:
 
 {% highlight bash %} shellfoundry new linux-server-shell {% endhighlight %}
 
-Navigate to the new directory, you will see the following files have been created for you:
+Navigate to the new directory (linux-server-shell), and you will see the following files have been created for you:
 
 ![Directory Structure]({{ site.url }}/devguide/assets/shell_folder.png)
 
-The generated folder contains all of the basic scaffolding needed for the new shell. We will review the shell project structure in a more in-depth manner in later stages of this guide.
+The generated folder contains all of the basic scaffolding needed for the new shell. For a more in-depth description of the contents of the shell folder, refer to the [Shell Project Guide]({{ site.url }}/devguide/shells/the-shell-project.html).
 
 Finally, let's make sure all of the basic package requirements for the shell are satisfied. Run the following command
 from the root of the project directory:
@@ -37,7 +34,7 @@ python -m pip install -r .\src\requirements.txt
 
 #### Make a minor change to the driver
 
-The source control for your shell is managed under the _src_ folder. When generating the project template, ShellFoundry already created a driver template as well under this folder. Open the file _driver.py_ in your preferred IDE/editor. You'll see it already contains a driver for our shell with an example command already in place. We'll soon implement our first command in this file. For now, let's just make sure everything is in working order by adding a simple 'hello world'.
+The source control for your shell is managed under the _src_ folder. When generating the project template, ShellFoundry already created a driver template as well under this folder. Open the file **driver.py** in your preferred IDE/editor. You'll see it already contains a driver for our shell with an example command already in place. We'll soon implement our first command in this file. For now, let's just make sure everything is in working order by adding a simple 'hello world'.
 
 Remove the 'example_function' function and replace it with the following code:
 {% highlight python %}
@@ -49,9 +46,9 @@ def say_hello(self, context, name):
     return "hello {name} from {resource_name}".format(name=name, resource_name=context.resource.name){% endhighlight %}
 
 We'll also want to add basic metadata including aliases and descriptions. The way to do that is by
-editing the drivermetadata.xml file located in the same folder.
+editing the **drivermetadata.xml** file located in the same folder.
 
-Open the drivermetadata.xml file in your preferred IDE and replace the highlighted section so that it matches
+Open the **drivermetadata.xml** file in your preferred IDE and replace the highlighted section so that it matches
 the test below:
 
 {% prism python linenos=3-12 %}
@@ -70,18 +67,30 @@ the test below:
 
 {% endprism %}
 
-There is no need to get into too many details at this stage. We'll dive more deeply into the drivermetadata.xml file in a later section of this guide. For now its sufficient to understand that we use this file to provide more CloudShell specific information regarding how to interpret and display the driver commands and their parameters.
+[Here]({{ site.url }}/devguide/shells/customizing-driver-commands.html) you can find more details on the **drivermetadata.xml**. For now, it's enough to understand that we use this file to provide more CloudShell specific information regarding how to interpret and display the driver commands and their parameters.
 
 Save the file. We're now ready to install the new Shell.
 
 #### Install the shell to your local CloudShell
 
 ShellFoundry also provides and easy and convenient way to package and install your package to your CloudShell server.
-To make use of this feature, you'll need to first edit the cloudshell_config.yaml file, which is located root folder
-of the Shell Project. Update the file with your CloudShell admin user/password and the server address.
-**Notice** that this file should not be added to your source control obvious security reasons.
-If you're using git you're already covered as this configuration file is included in the automatically generated
-.gitingore file.
+To make use of this feature, you'll need to first edit the **cloudshell_config.yaml** file, which is located root folder of the Shell Project and looks like this:
+
+{% highlight bash %}
+install:
+  host: localhost
+  port: 9000
+  username: YOUR_USERNAME
+  password: YOUR_PASSWORD
+  domain: Global
+{% endhighlight %}
+
+Update the file with your CloudShell admin user/password and the server address.
+
+
+> Notice that this file should **not** be added to your source control for obvious security reasons.
+If you're using git, you're already covered as this configuration file is included in the automatically generated
+**.gitingore** file.
 
 After you've edited and saved the file, run the following command from the shell root directory:
 
